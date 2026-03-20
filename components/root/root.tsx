@@ -6,14 +6,14 @@ import { getUserInfo } from "@/action/user";
 export default async function Root({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();
   const token = cookieStore.get("access_token")?.value;
-  let user = null
-  token && ( user = await getUserInfo(token!) )
+  let user = null;
+  token && (user = await getUserInfo(token!));
 
   return (
-    <div className="flex bg-[#080810] overflow-hidden h-dvh">
-      <SidebarMobileWrapper user={user}/>
+    <div className="flex bg-[#080810] h-dvh overflow-hidden">
+      <SidebarMobileWrapper user={user} />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <main className="flex-1 overflow-auto">
+        <main className="flex-1 overflow-auto pt-[52px] lg:pt-0">
           {children}
         </main>
       </div>
