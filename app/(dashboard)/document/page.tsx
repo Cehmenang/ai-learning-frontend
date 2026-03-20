@@ -129,7 +129,12 @@ export default function DocumentsPage() {
   const [filter, setFilter] = useState<string>("all");
   const [documents, setDocuments] = useState<any[]>([])
 
-    useEffect(()=>{ getDocumentsByUser(setDocuments) }, [])
+    useEffect(()=>{ 
+      (async function(){
+        const response = await getDocumentsByUser() as any[] | null
+        ( response && response.length > 0 ) && setDocuments(response)
+      })()
+    }, [])
 
     const types = ["all", "PDF", "DOCX", "TXT", "PPTX"];
     

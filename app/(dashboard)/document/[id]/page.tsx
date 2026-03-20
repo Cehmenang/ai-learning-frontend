@@ -26,7 +26,8 @@ export default function SingleDocument({ params }: { params: { id: string } }){
     useEffect(()=>{
         (async function(){
             const {id} = await params
-            return getDocumentById(id, setDocument)
+            const response = await getDocumentById(id)
+            response && setDocument(response)
         })()
     }, [])
 

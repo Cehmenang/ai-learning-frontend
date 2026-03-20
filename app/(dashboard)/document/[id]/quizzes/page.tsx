@@ -23,7 +23,9 @@ export default function Quizzes({ params }: { params: { id: string } }) {
     (async function(){
         const { id } = await params
         setDocumentId(id)
-        return getQuizzesByDocument(id, setQuizzes)
+        
+        const response = await getQuizzesByDocument(id) as any[] | null
+        response && setQuizzes(response)
     })()
   },[])
 

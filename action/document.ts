@@ -3,7 +3,7 @@
 import { cookies } from "next/headers"
 import { Dispatch, SetStateAction } from "react"
 
-export async function getDocumentsByUser(setDocuments: Dispatch<SetStateAction<any>>){
+export async function getDocumentsByUser(){
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/document`, {
         method: 'GET',
@@ -11,11 +11,11 @@ export async function getDocumentsByUser(setDocuments: Dispatch<SetStateAction<a
     })
     if(response.ok){
         const { documents } = await response.json()
-        return setDocuments(documents)
-    } else setDocuments([])
+        return documents
+    } else return null
 }
 
-export async function getDocumentById(id: string, setDocument: Dispatch<SetStateAction<any>>){
+export async function getDocumentById(id: string){
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/document/${id}`, {
         method: 'GET',
@@ -23,8 +23,8 @@ export async function getDocumentById(id: string, setDocument: Dispatch<SetState
     })
     if(response.ok){
         const { document } = await response.json()
-        return setDocument(document)
-    } else setDocument(null)
+        return document
+    } else null
 }
 
 export async function uploadDocument(form: any){

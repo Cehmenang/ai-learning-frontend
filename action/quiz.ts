@@ -11,14 +11,16 @@ export async function generateQuiz(id: string){
     })
 }
 
-export async function getQuizzesByDocument(id: string, setQuizzes: Dispatch<SetStateAction<any>>){
+export async function getQuizzesByDocument(id: string){
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/quiz/document/${id}`, {
         method: 'GET',
         headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` }
     })
-    const data = await response.json()
-    return setQuizzes(data.quizzes)
+    if(response.ok){
+        const data = await response.json()
+        return data.quizzes
+    }else { return null }
 }
 
 export async function getQuizByDocument(documentId: string, id: string){
