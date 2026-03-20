@@ -1,0 +1,34 @@
+"use client"
+
+import { googleLoginHandler, loginSubmitHandler } from "@/action/user";
+import { Button } from "@/components/selia/button";
+import { Input } from "@/components/selia/input";
+import { useForm } from "react-hook-form";
+import { GoogleLogin } from "@react-oauth/google";
+import { redirect } from "next/navigation";
+
+type LoginType = {
+    username: string,
+    password: string
+}
+
+export default function Login(){
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginType>()
+
+    return (
+        <div className="main h-svh flex justify-center items-center">
+
+        <form onSubmit={handleSubmit(loginSubmitHandler)} className="flex flex-col gap-4 w-full max-w-sm mx-auto p-10 rounded-3xl">
+            <h1 className="text-[32px] font-extrabold">Login</h1>
+            <Input placeholder="Masukkan Username" {...register("username", { required: true })}/>
+            <Input placeholder="Masukkan Password" {...register("password", { required: true, minLength: 6 })}/>
+            <GoogleLogin onSuccess={async (credential)=>{
+                const response = await googleLoginHandler(credential)
+                response.status == 200 && redirect('/')
+            }}/>
+            <Button type="submit">Login</Button>
+        </form>
+
+        </div>
+    )
+}

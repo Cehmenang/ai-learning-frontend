@@ -1,0 +1,13 @@
+{
+  "framework": "next",
+  "paths": {
+    "workdir": "./",
+    "components": "./components/selia",
+    "css": "./app/globals.css",
+    "utils": "./lib/utils.ts"
+  },
+  "imports": {
+    "utils": "@/lib/utils.ts",
+    "components": "@/components/selia"
+  }
+}
