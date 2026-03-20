@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function loginSubmitHandler(data: { username: string, password: string }) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/user/login`, {
+    const response = await fetch(`${process.env.SERVER}/user/login`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -29,7 +29,7 @@ export async function loginSubmitHandler(data: { username: string, password: str
 }
 
 export async function googleLoginHandler(credential: CredentialResponse) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/user/google-login`, {
+    const response = await fetch(`${process.env.SERVER}/user/google-login`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credential),
@@ -53,7 +53,7 @@ export async function googleLoginHandler(credential: CredentialResponse) {
 }
 
 export async function getUserInfo(token: string){
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/user/info`, {
+    const response = await fetch(`${process.env.SERVER}/user/info`, {
       method: 'GET',
       headers: { "Cookie": `access_token=${token}` }
     })

@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from "react"
 
 export async function generateQuiz(id: string){
     const cookieStore = await cookies()
-    await fetch(`${process.env.NEXT_PUBLIC_SERVER}/quiz/generate/${id}`, {
+    await fetch(`${process.env.SERVER}/quiz/generate/${id}`, {
         method: 'GET',
         headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
     })
@@ -13,7 +13,7 @@ export async function generateQuiz(id: string){
 
 export async function getQuizzesByDocument(id: string, setQuizzes: Dispatch<SetStateAction<any>>){
     const cookieStore = await cookies()
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/quiz/document/${id}`, {
+    const response = await fetch(`${process.env.SERVER}/quiz/document/${id}`, {
         method: 'GET',
         headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
     })
@@ -23,7 +23,7 @@ export async function getQuizzesByDocument(id: string, setQuizzes: Dispatch<SetS
 
 export async function getQuizByDocument(documentId: string, id: string){
     const cookieStore = await cookies()
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/quiz/${id}/document/${documentId}`, {
+    const response = await fetch(`${process.env.SERVER}/quiz/${id}/document/${documentId}`, {
         method: 'GET',
         headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
     })
@@ -34,7 +34,7 @@ export async function getQuizByDocument(documentId: string, id: string){
 export async function createAttempt(questionsId: string[], optionsId: string[], score: number, quizId: string){
     try{
         const cookieStore = await cookies()
-        const result = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/quiz/${quizId}/attempt`, {
+        const result = await fetch(`${process.env.SERVER}/quiz/${quizId}/attempt`, {
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export async function createAttempt(questionsId: string[], optionsId: string[], 
 
 export async function askQuestion(question: string, documentId: string){
     const cookieStore = await cookies()
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/document/ask/${documentId}`, {
+    const response = await fetch(`${process.env.SERVER}/document/ask/${documentId}`, {
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
