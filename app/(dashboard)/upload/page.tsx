@@ -107,7 +107,7 @@ export default function UploadDocument() {
       }
 
       setUploadSuccess(true);
-      setTimeout(() => router.push("/documents"), 2000);
+    //   setTimeout(() => router.push("/documents"), 2000);
     } catch (err: any) {
       setError(err.message || "Terjadi kesalahan saat upload");
     } finally {
