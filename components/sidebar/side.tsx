@@ -48,10 +48,10 @@ export default function Sidebar({ mobileOpen, onMobileClose, user }: SidebarProp
           </div>
           <div>
             <span className="text-white" style={{ fontWeight: 600, fontSize: "15px" }}>
-              StudyAI
+              Belajar Aja
             </span>
             <p className="text-[#4a4a6a]" style={{ fontSize: "11px" }}>
-              Smart Learning
+              Smart Learning with Smart Platform
             </p>
           </div>
           <button

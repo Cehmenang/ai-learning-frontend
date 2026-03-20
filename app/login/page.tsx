@@ -51,8 +51,8 @@ export default function Login() {
             <Brain className="w-5 h-5 text-white" />
           </div>
           <div>
-            <span className="text-white font-bold text-lg">StudyAI</span>
-            <p className="text-[#4a4a6a] text-xs">Smart Learning Platform</p>
+            <span className="text-white font-bold text-lg">Belajar Aja</span>
+            <p className="text-[#4a4a6a] text-xs">Smart Learning with Smart Platform</p>
           </div>
         </div>
 
