@@ -99,10 +99,10 @@ export default function UploadDocument() {
         const form = new FormData();
         form.append("document", uploadedFile.file);
 
-        const response = await uploadDocument(form)
-
-        if (!response.ok) {
-          throw new Error(`Gagal upload ${uploadedFile.file.name}`);
+        try{
+            await uploadDocument(form)
+        }catch(err){
+            throw new Error(`Gagal upload ${uploadedFile.file.name}`);
         }
       }
 
