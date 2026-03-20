@@ -11,6 +11,7 @@ import {
   ArrowLeft,
   Loader2,
 } from "lucide-react";
+import { uploadDocument } from "@/action/document";
 
 interface UploadedFile {
   file: File;
@@ -98,17 +99,10 @@ export default function UploadDocument() {
         const form = new FormData();
         form.append("document", uploadedFile.file);
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/document/upload`, {
-          method: "POST",
-          body: form,
-          credentials: "include",
-        });
-
-        const data = await response.json();
-        console.log(data);
+        const response = await uploadDocument(form)
 
         if (!response.ok) {
-          throw new Error(data.message || `Gagal upload ${uploadedFile.file.name}`);
+          throw new Error(`Gagal upload ${uploadedFile.file.name}`);
         }
       }
 

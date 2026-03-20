@@ -27,3 +27,12 @@ export async function getDocumentById(id: string, setDocument: Dispatch<SetState
     } else setDocument(null)
 }
 
+export async function uploadDocument(form: any){
+    const cookieStore = await cookies()
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/document/upload`, {
+          method: "POST",
+          body: form,
+          headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
+    });
+    return await response
+}
