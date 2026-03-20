@@ -1,3 +1,5 @@
+import { SetStateAction } from "react"
+
 export async function getDocumentsByUser(setDocuments: React.SetStateAction<any>){
     const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/document`, {
         method: 'GET',
@@ -9,7 +11,7 @@ export async function getDocumentsByUser(setDocuments: React.SetStateAction<any>
     } else setDocuments([])
 }
 
-export async function getDocumentById(id: string, setDocument){
+export async function getDocumentById(id: string, setDocument: SetStateAction<any>){
     const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/document/${id}`, {
         method: 'GET',
         credentials: 'include'

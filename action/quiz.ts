@@ -5,7 +5,7 @@ export async function generateQuiz(id: string){
     })
 }
 
-export async function getQuizzesByDocument(id: string, setQuizzes: React.SetStateAction<any[]>){
+export async function getQuizzesByDocument(id: string, setQuizzes: React.SetStateAction<any>){
     const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/quiz/document/${id}`, {
         method: 'GET',
         credentials: 'include'
