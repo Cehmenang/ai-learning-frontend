@@ -7,7 +7,7 @@ export async function getDocumentsByUser(setDocuments: Dispatch<SetStateAction<a
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/document`, {
         method: 'GET',
-        headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
+        headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` }
     })
     if(response.ok){
         const { documents } = await response.json()
@@ -19,7 +19,7 @@ export async function getDocumentById(id: string, setDocument: Dispatch<SetState
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/document/${id}`, {
         method: 'GET',
-        headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
+        headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` }
     })
     if(response.ok){
         const { document } = await response.json()
@@ -33,7 +33,7 @@ export async function uploadDocument(form: any){
         await fetch(`${process.env.SERVER}/document/upload`, {
               method: "POST",
               body: form,
-              headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
+              headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` }
         });
         return true
     }catch(err){ console.log(err) }

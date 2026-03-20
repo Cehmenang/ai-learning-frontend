@@ -7,7 +7,7 @@ export async function generateQuiz(id: string){
     const cookieStore = await cookies()
     await fetch(`${process.env.SERVER}/quiz/generate/${id}`, {
         method: 'GET',
-        headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
+        headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` }
     })
 }
 
@@ -15,7 +15,7 @@ export async function getQuizzesByDocument(id: string, setQuizzes: Dispatch<SetS
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/quiz/document/${id}`, {
         method: 'GET',
-        headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
+        headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` }
     })
     const data = await response.json()
     return setQuizzes(data.quizzes)
@@ -25,7 +25,7 @@ export async function getQuizByDocument(documentId: string, id: string){
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/quiz/${id}/document/${documentId}`, {
         method: 'GET',
-        headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` }
+        headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` }
     })
     const data = await response.json()
     return data
@@ -38,7 +38,7 @@ export async function createAttempt(questionsId: string[], optionsId: string[], 
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
-                "Cookie": `access_token=${cookieStore.get('access_token')}`
+                "Cookie": `access_token=${cookieStore.get('access_token')?.value}`
              },
             body: JSON.stringify({
                 questionsId,
@@ -56,7 +56,7 @@ export async function askQuestion(question: string, documentId: string){
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
-                "Cookie": `access_token=${cookieStore.get('access_token')}`
+                "Cookie": `access_token=${cookieStore.get('access_token')?.value}`
             },
             body: JSON.stringify({ question })
     })

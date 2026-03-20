@@ -5,7 +5,7 @@ import { cookies } from "next/headers"
 export async function getAllCount(){
     const cookieStore = await cookies()
     const response = await fetch(`${process.env.SERVER}/document/count`,
-        { method: 'GET', headers: { "Cookie": `access_token=${cookieStore.get('access_token')}` } }
+        { method: 'GET', headers: { "Cookie": `access_token=${cookieStore.get('access_token')?.value}` } }
     )
     return await response.json()
 }
