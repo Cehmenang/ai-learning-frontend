@@ -52,7 +52,6 @@ function QuizContent({ id, quizId }: { id: string; quizId: string }) {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
-  const [userScore, setScore ] = useState<number | null>(null)
   const [ attemptId, setAttemptId ] = useState<string | null>(null)
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);

@@ -19,6 +19,8 @@ export async function loginSubmitHandler(data: { username: string, password: str
         cookieStore.set('access_token', token, {
             httpOnly: true,
             path: '/',
+            sameSite: 'none',
+            secure: true,
             maxAge: 1000 * 3600
         })
     }
@@ -41,6 +43,9 @@ export async function googleLoginHandler(credential: CredentialResponse) {
         cookieStore.set('access_token', token, {
             httpOnly: true,
             path: '/',
+            sameSite: 'none',
+            secure: true,
+            maxAge: 1000 * 3600
         })
     }
 

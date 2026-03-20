@@ -1,7 +1,7 @@
 "use client"
 
 import { getDocumentById } from "@/action/document"
-import { generateQuiz } from "@/action/quiz"
+import { askQuestion, generateQuiz } from "@/action/quiz"
 import { useEffect, useState } from "react"
 
 interface IMessage{
@@ -34,13 +34,8 @@ export default function SingleDocument({ params }: { params: { id: string } }){
         e.preventDefault()
         const form = new FormData(e.target) 
         const question = form.get('question')! as string
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/document/ask/${document.id!}`, {
-            method: 'POST',
-            credentials: 'include',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question }),
-        })
-        const data = await response.json()
+        
+        const data = await askQuestion(question, document.id)
 
         const chat = await fetch('/api/ai', {
             method: 'POST',
