@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export async function generateQuiz(id: string){
     await fetch(`${process.env.NEXT_PUBLIC_SERVER}/quiz/generate/${id}`, {
         method: 'GET',
@@ -5,7 +7,7 @@ export async function generateQuiz(id: string){
     })
 }
 
-export async function getQuizzesByDocument(id: string, setQuizzes: React.SetStateAction<any>){
+export async function getQuizzesByDocument(id: string, setQuizzes: Dispatch<SetStateAction<any>>){
     const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER}/quiz/document/${id}`, {
         method: 'GET',
         credentials: 'include'
