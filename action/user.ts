@@ -19,7 +19,7 @@ export async function loginSubmitHandler(data: { username: string, password: str
         cookieStore.set('access_token', token, {
             httpOnly: true,
             path: '/',
-            sameSite: 'none',
+            sameSite: 'lax',
             secure: true,
             maxAge: 1000 * 3600
         })
